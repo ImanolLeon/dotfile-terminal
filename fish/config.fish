@@ -9,8 +9,16 @@ zoxide init fish | source
 #Ir a principal
 alias principal='cd /mnt/c/Users/imano'
 #Llamar a archivo con información acerca de migraciones
-alias migracionesPhp='/mnt/c/Users/imano/Documents/utils/MigrationsPhp.sh'
+alias migracionesPhp='/home/imano/Documentos/utils/MigrationsPhp.sh'
 
+#llamar a credenciales de proyecto nhl
+alias credenciales='cat /home/imano/Documentos/utils/credenciales.txt'
+
+#llamar a hostinger
+alias hostinger='cat /home/imano/Documentos/utils/hostinger.txt'
+
+#llamar a powerShell
+alias powershell='/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe'
 #prompt
 starship init fish | source
 
