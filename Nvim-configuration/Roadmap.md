@@ -97,18 +97,40 @@ Seguimos con git , curl y unzip
 sudo apt install git curl unzip
 ```
 Descargar xclip
-Linux no tiene un solo portapapeles del sistema "de fábrica" accesible fácilmente desde la terminal, a diferencia de Windows o macOS.Neovim necesita un programa intermediario para "hablar" con ese portapapeles del sistema operativo.
+Linux no tiene un solo portapapeles del sistema "de fábrica" accesible fácilmente desde la terminal, a diferencia de Windows o macOS.es por eso que neovim  necesita un programa intermediario para "hablar" con ese portapapeles del sistema operativo.
 ```
 sudo apt install xclip
 ```
+Además debemos descargar yarn 
+
+```
+npm install -g yarn
+```
+
+Antes de ir a ejecutar neovim es necesario recargar las dependencias de npm debido a que siempre tienen bugs , es cuestión de seguirestos pasos:
+
+Nos dirigimos a la carpeta
+```
+cd ~/.local/share/nvim/lazy/markdown-preview.nvim/app
+```
+Luego borramos las dependencias
+
+```
+rm -rf node_modules package-lock.json
+```
+
+y por ultimo las descargamos 
+```
+npm install
+```
+
 
 6. Configuraciones de Neovim
 Solamente basta con mover nuestra carpeta de nvim a la carpeta de configuración de nuestro home que es `~/.config` 
-Luego de moverla le damos a 
+ 
 ```
 nvim
 ```
-Y se descargará todo sin error:
 
 
 7. Estrcutura básica para entender la estrcutura de los modulos en lua
