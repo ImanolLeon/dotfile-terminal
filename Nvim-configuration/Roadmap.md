@@ -133,6 +133,23 @@ git config --global user.name "Tu Nombre"
 git config --global user.email "tu_correo@ejemplo.com"
 ```
 
+y creamos nuestra clave ssh 
+```
+ssh-keygen -t ed25519 -f ~/.ssh/ClaveImanol
+```
+
+*importante: no colocar agente*
+
+Después agregamos nuestra clave a nuestro .gitconfig con este comando:
+
+```
+git config --global core.sshCommand "ssh -i ~/.ssh/ClaveImanol"
+```
+
+y desde ese momento nos pedirá contraseña cada vez que hagamos pull , push , etc.
+
+(No olvidar que debemos copiar la clave.pub en nuestro github)
+
 
 
 
