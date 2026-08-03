@@ -55,8 +55,10 @@ sudo apt install fish
 
  y luego lo agregamos al path para que pueda funcionar, esto lo realizamos entrando a su configuración base que se encuentra en `~/.config/fish/conf.fish` agregamos la linea 
  ```
- eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+    echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> ~/.config/fish/config.fish
  ```
+
+Suele cambiar bastante con la shell que uses, en este caso estamos usando fish.
 
  El archivo completo quedaria asi :
  ```
@@ -107,7 +109,15 @@ Además debemos descargar yarn
 npm install -g yarn
 ```
 
-Antes de ir a ejecutar neovim es necesario recargar las dependencias de npm debido a que siempre tienen bugs , es cuestión de seguirestos pasos:
+
+6. Configuraciones de Neovim
+Solamente basta con mover nuestra carpeta de nvim a la carpeta de configuración de nuestro home que es `~/.config` 
+ 
+```
+nvim
+```
+
+Después de ejecutar neovim es necesario recargar las dependencias de npm debido a que siempre tienen bugs , es cuestión de seguirestos pasos:
 
 Nos dirigimos a la carpeta
 ```
@@ -123,16 +133,15 @@ y por ultimo las descargamos
 ```
 npm install
 ```
-
-
-6. Configuraciones de Neovim
-Solamente basta con mover nuestra carpeta de nvim a la carpeta de configuración de nuestro home que es `~/.config` 
- 
+Una vez acabado eso nos dará un error de versión y lo solucionamos yendo a la siguiente carpeta 
 ```
-nvim
+cd ~/.local/share/nvim/lazy/markdown-preview.nvim
 ```
+Después regresamos a la version donde no causaba conflicto
 
-
+```
+git checkout app/yarn.lock
+```
 7. Estrcutura básica para entender la estrcutura de los modulos en lua
 
 ```lua

@@ -31,8 +31,28 @@ return {
       },
     },
    completion = {
-      list = { selection = { preselect = false } },
-      menu = { auto_show = true },
+    list = { selection = { preselect = false } },
+    menu = {
+      auto_show = true,
+      draw = {
+        columns = {
+          { "label", "label_description", gap = 1 },
+          { "kind_icon", "source_name", gap = 1 },
+        }, components = {
+    source_name = {
+      text = function(ctx)
+        local names = {
+          lsp = "[LSP]",
+          buffer = "[Buffer]",
+          path = "[Path]",
+          dictionary = "[Dict]",
+        }
+        return names[ctx.source_name] or ctx.source_name
+      end,
     },
   },
+      },
+    },
+  },
+},
 }
