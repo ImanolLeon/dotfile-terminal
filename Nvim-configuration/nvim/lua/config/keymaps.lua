@@ -21,3 +21,9 @@ vim.keymap.set("n", "<S-f>", builtin.find_files, { desc = "Buscar archivos" })
 
 -- Buscar palabras en el archivo activo (Shift+S)
 vim.keymap.set("n", "<S-s>", builtin.current_buffer_fuzzy_find, { desc = "Buscar palabras en pestaña abierta" })
+
+--indentar selección con tab
+vim.keymap.set("v", "<Tab>", ">gv", { silent = true, desc = "Indentar selección" })
+
+
+

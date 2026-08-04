@@ -155,9 +155,39 @@ return {
 }
 ```
 
-8. Conectarse con Github con el protocolo de seguridad ssh
+8. Descargamos Ranger 
 
- Lo primero es coloca nuestro nombre y correo globalmente , con esta sintaxis
+```
+sudo apt install ranger
+```
+
+Por defecto, ranger usa la variable de entorno $EDITOR para decidir qué editor abrir
+Es por eso que optamos por cambiar la variable de entorno $EDITOR para que use
+nvim en lugar de nano con el siguiente comando:
+
+```
+set -Ux EDITOR nvim
+```
+Para salir de ranger solemos usar el comanod `q` 
+
+9. Descargamos zellij
+
+```
+brew install zellij
+```
+
+Para saber personalizar zellij debemos tener esto en cuenta
+* text_unselected / text_selected -> Texto normal / texto de la pestaña activa
+* ribbon_selected / ribbon_unselected -> La "cinta" de pestañas arriba (activa/inactiva)
+* frame_selected -> El borde del panel activo
+* frame_highligt -> Borde resaltado (ej: cuando movés un panel)
+* exit_code_success / exit_code_error -> Color cuando un comando termina bien/mal
+* multiplayer_user_colors -> Colores para sesiones compartidas con varios usuarios
+
+---------------------------------------------------------------------------------- 
+Conectarse con Github con el protocolo de seguridad ssh
+
+Lo primero es coloca nuestro nombre y correo globalmente , con esta sintaxis
 
 ```
 git config --global user.name "Tu Nombre"
