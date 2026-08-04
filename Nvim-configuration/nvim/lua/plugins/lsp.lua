@@ -24,6 +24,7 @@ return {
   {
     "neovim/nvim-lspconfig",
     config = function()
+      vim.lsp.enable("fish_lsp")
       vim.lsp.enable("lua_ls")
       vim.lsp.enable("taplo")
       vim.lsp.enable("intelephense")
