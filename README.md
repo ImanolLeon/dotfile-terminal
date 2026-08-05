@@ -1,6 +1,4 @@
 # mi Dotfile de mi terminal
-
-
 ### 1. Starhip 
 
 En el archivo *starship.toml* manejo el formato y los iconos que tiene mi prompt :
