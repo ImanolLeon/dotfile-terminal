@@ -18,11 +18,7 @@ Este repositorio reúne la configuración de las herramientas que utilizo diaria
 
 Fish es el *shell* que utilizo como reemplazo de Bash. Desde su archivo de configuración defino alias, variables de entorno, funciones personalizadas e inicializo las herramientas que uso diariamente.
 
-Su archivo principal de configuración se encuentra en:
-
-```text
-config.fish
-```
+Su archivo principal de configuración se encuentra en `config.fish`
 
 Aquí también se cargan herramientas como **Starship**, **eza**, **Atuin**, entre otras.
 
@@ -48,11 +44,7 @@ En mi configuración reemplazo `ls` mediante un alias definido en `config.fish`:
 alias ls='eza --icons'
 ```
 
-La personalización de los iconos y colores se encuentra en:
-
-```text
-eza/theme.yml
-```
+La personalización de los iconos y colores se encuentra en `eza/theme.yml`
 
 A partir de la línea **104** se define el estilo para los distintos tipos de archivos y directorios.
 
