@@ -17,13 +17,25 @@ vim.keymap.set("n", "<C-a>", ":NvimTreeToggle<CR>")
 vim.keymap.set("n", "<Tab>", ":BufferLineCycleNext<CR>")
 
 -- Buscar archivos en el proyecto (Shift+F)
-vim.keymap.set("n", "<S-f>", builtin.find_files, { desc = "Buscar archivos" })
+vim.keymap.set("n", "<S-f>", function()
+	builtin.find_files({
+		cwd = vim.fn.expand("~"), -- carpeta del archivo actual
+		find_command = { "fd", "--type", "f", "--hidden", "--exclude", ".git" },
+	})
+end, { desc = "Buscar archivos desde el home " })
 
 -- Buscar palabras en el archivo activo (Shift+S)
 vim.keymap.set("n", "<S-s>", builtin.current_buffer_fuzzy_find, { desc = "Buscar palabras en pestaña abierta" })
 
---indentar selección con tab
+--indentar selección con tab (Permite que todo lo que selecciones puedas dar tab)
 vim.keymap.set("v", "<Tab>", ">gv", { silent = true, desc = "Indentar selección" })
 
+-- Ctrl + flecha derecha: saltar al inicio de la siguiente palabra (en insert)
+vim.keymap.set("i", "<C-Right>", "<C-o>w", { desc = "Saltar palabra a la derecha" })
 
-
+-- Ctrl + flecha izquierda: saltar al inicio de la palabra anterior (en insert)
+vim.keymap.set("i", "<C-Left>", "<C-o>b", { desc = "Saltar palabra a la izquierda" })
+--Formatear codigo
+vim.keymap.set({ "n", "v" }, "<C-A-f>", function()
+	require("conform").format({ async = true, lsp_fallback = true })
+end, { desc = "Formatear archivo o selección" })
