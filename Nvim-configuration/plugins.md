@@ -56,10 +56,45 @@ Nos movemos entre ventanas de archivos con el comando:
 Control + a 
 ```
 ## Alpha 
-Es la primera pantalla cuando escribes nvim al inicio y necesita cierto plugin extra de busqueda llamado 
+Es la primera pantalla cuando escribes nvim al inicio y necesita cierto plugin extra de busqueda
+llamado 
 `Telescope` 
 ## Telescope 
 Es un buscado de archivos , palabras , etc.
+
+### Manejo de teclas
+
+## Mason 
+
+Mason es un administrador de paquetes dentro de Neovim, específico para herramientas de desarrollo: LSPs (servidores de lenguaje), formatters, linters, y debuggers (DAP).
+Sirve tener un autocompletado de lenguajes de programació,scriptin,etc.
+
+En la cmdLine de neovim escribes 
+
+```
+:Mason
+```
+y con `i` descargas.
+
+### LCP
+Los lcp los ubicas en `~/.config/nvim/lua/pugins/lcp.lua` cada vez que agregues un lcp
+debes agregar en el array de ese archivo.
+### Formatter
+Los formatters se ubican `~/.config/nvim/lua/plugins/formatter.lua` cada vez que agregue un formatear
+agregar en el array de ese archvo.
+
+### Comandos
+
+1. Podemos seleecionar con Control + Shift y luego Control+Alt + f
+```
+Control + shift y flecha (selección) y luego => control+alt+ f
+```
+2. Si no deseas seleccionar y quieres que realice el formato a todo el archivo en modo normal
+escribes:
+```
+Control + alt + f
+```
+
 
 
 

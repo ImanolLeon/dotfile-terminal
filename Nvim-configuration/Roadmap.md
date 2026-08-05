@@ -109,14 +109,184 @@ Además debemos descargar yarn
 npm install -g yarn
 ```
 
+También descargamos una herramienta para buscar archivos 
+```bash
+sudo apt install fd-find
+```
+Si es que da error el siguiente error:
+
+```
+fd: Executable not found
+```
+
+Lo que debemos hacer es verificar si realmente se descargó.
+```
+ls -l ~/.local/bin/fd
+```
+Salida esperada 
+
+```
+imanol@ImanolPc ~> ls -l ~/.local/bin/fd
+lrwxrwxrwx 1 imanol imanol 15 Aug  4 17:39 /home/imanol/.local/bin/fd@ -> /usr/bin/fdfind
+```
+Si eso no sale entonces deberiamos descargarlo otra vez.
+Si la salida es la esperada entonces lo que nos queda es confirmar que `~/.local/bin` esté en tu PATH
+
+*¿Qué es Path?*
+
+Es una variable de entorno que se ve asi :
+
+```
+imanol@ImanolPc ~> echo $PATH
+/home/linuxbrew/.linuxbrew/bin
+/home/linuxbrew/.linuxbrew/sbin
+/usr/local/sbin
+/usr/local/bin
+/usr/sbin
+/usr/bin
+/sbin
+/bin
+/usr/games
+/usr/local/games
+/usr/lib/wsl/lib
+/mnt/c/Program Files/Common Files/Oracle/Java/javapath
+/mnt/c/Windows/system32
+/mnt/c/Windows
+/mnt/c/Windows/System32/Wbem
+/mnt/c/Windows/System32/WindowsPowerShell/v1.0/
+/mnt/c/Windows/System32/OpenSSH/
+/mnt/c/Program Files/nodejs/
+/mnt/c/Program Files/Git/cmd
+/mnt/c/composer
+/mnt/c/Users/imano/AppData/Local/Programs/Python/Python313/Scripts/
+/mnt/c/Users/imano/AppData/Local/Programs/Python/Python313/
+/mnt/c/Users/imano/AppData/Local/Microsoft/WindowsApps
+/mnt/c/Users/imano/AppData/Local/Programs/Microsoft VS Code/bin
+/mnt/c/Users/imano/AppData/Roaming/npm
+/mnt/c/sqlite/sqlite-tools-win-x64-3510000
+/mnt/c/Program Files/MongoDB/Server/8.2/bin
+/mnt/c/Program Files/Git/bin
+/mnt/c/Users/imano/AppData/Local/Microsoft/WinGet/Packages/lsd-rs.lsd_Microsoft.Winget.Source_8wekyb3d8bbwe/lsd-v1.2.0-x86_64-pc-windows-msvc
+/mnt/c/php
+/mnt/c/Users/imano/AppData/Roaming/Composer/vendor/bin
+/mnt/c/Users/imano/.bun/bin
+/mnt/c/Users/imano/AppData/Local/Microsoft/WinGet/Packages/Starship.Starship_Microsoft.Winget.Source_8wekyb3d8bbwe
+/mnt/c/Users/imano/starship
+```
+
+Como te das cuenta no se encuentra la ruta de 
+
+```
+/home/imanol/.local/bin
+```
+Para poder añadir una ruta al path depende mucho de nuestro $SHELL 
+
+--- En fish se hace de la siguiente manera.
+
+```
+fish_add_path ~/.local/bin
+```
+Luego verificamos si se agregó al $PATH
+
+```
+imanol@ImanolPc ~> echo $PATH
+/home/imanol/.local/bin <--- Se añadió
+/home/linuxbrew/.linuxbrew/bin
+/home/linuxbrew/.linuxbrew/sbin
+/usr/local/sbin
+/usr/local/bin
+/usr/sbin
+/usr/bin
+/sbin
+/bin
+/usr/games
+/usr/local/games
+/usr/lib/wsl/lib
+/mnt/c/Program Files/Common Files/Oracle/Java/javapath
+/mnt/c/Windows/system32
+/mnt/c/Windows
+/mnt/c/Windows/System32/Wbem
+/mnt/c/Windows/System32/WindowsPowerShell/v1.0/
+/mnt/c/Windows/System32/OpenSSH/
+/mnt/c/Program Files/nodejs/
+/mnt/c/Program Files/Git/cmd
+/mnt/c/composer
+/mnt/c/Users/imano/AppData/Local/Programs/Python/Python313/Scripts/
+/mnt/c/Users/imano/AppData/Local/Programs/Python/Python313/
+/mnt/c/Users/imano/AppData/Local/Microsoft/WindowsApps
+/mnt/c/Users/imano/AppData/Local/Programs/Microsoft VS Code/bin
+/mnt/c/Users/imano/AppData/Roaming/npm
+/mnt/c/sqlite/sqlite-tools-win-x64-3510000
+/mnt/c/Program Files/MongoDB/Server/8.2/bin
+/mnt/c/Program Files/Git/bin
+/mnt/c/Users/imano/AppData/Local/Microsoft/WinGet/Packages/lsd-rs.lsd_Microsoft.Winget.Source_8wekyb3d8bbwe/lsd-v1.2.0-x86_64-pc-windows-msvc
+/mnt/c/php
+/mnt/c/Users/imano/AppData/Roaming/Composer/vendor/bin
+/mnt/c/Users/imano/.bun/bin
+/mnt/c/Users/imano/AppData/Local/Microsoft/WinGet/Packages/Starship.Starship_Microsoft.Winget.Source_8wekyb3d8bbwe
+/mnt/c/Users/imano/starship
+```
+## ¿Qué es ~/.local?
+
+Es una carpeta que sigue una convención estándar en Linux (viene del XDG Base Directory Specification)
+para que cada usuario tenga su propio **espacio de programas y archivos** , separado de las
+carpetas del sistema como `/usr/bin` o `/usr/local/bin` (que requieren sudo para tocarlas porque son
+compartidas por todos los usuarios de la máquina).
+
+Dentro de `~/.local` normalmente hay:
+
+```
+~/.local/bin/       → ejecutables/scripts PERSONALES TUYOS
+~/.local/share/      → datos de programas (ahí vive el config de plugins de Neovim, por ejemplo)
+~/.local/lib/         → librerías instaladas para tu usuario
+~/.local/state/       → estado de aplicaciones (logs, historial, etc.)
+```
+
+## ¿Por qué existe ~/.local/bin específicamente? 
+
+Es el lugar "oficial" para que tú, como usuario normal, sin necesidad de sudo, pongas:
+
+1. Scripts propios que escribas.
+2. Enlaces simbólicos (como el que hiciste con fd).
+3. Programas instalados por herramientas como pip install --user, cargo install, npm install -g (con configuración de usuario), etc.
+
+La idea de `~/.local/bin` es que no necesites permisos de administrador para tener tus 
+propios comandos disponibles, y que no mezcles tus cosas personales con los programas del 
+sistema que gestiona apt.
+
+## Conclusión 
+
+### `~/.local/bin`
+Aquí van :
+
+1. Scripts que tú escribes (~/.local/bin)
+2. Enlaces simbólicos que tú creas
+3. Programas instalados con herramientas que instalan "solo para ti" (pip install --user, por ejemplo)
+4. Datos/configuración de apps que solo te afectan a ti (~/.local/share)
+
+### `/usr/local/bin` 
+
+Esta es la carpeta grande, del sistema operativo en sí, gestionada principalmente
+por el gestor de paquetes (apt, pacman, etc.). Ahí vive casi todo lo que instalas con sudo:
+
+1. lo gestiona el sistema de paquetes (apt install algo pone ahí el binario)
+
+
 
 6. Configuraciones de Neovim
-Solamente basta con mover nuestra carpeta de nvim a la carpeta de configuración de nuestro home que es `~/.config` 
+Solamente basta con mover la carpeta de nvim de nuestro repositorio a la carpeta de configuración de nuestro home que es `~/.config` 
  
 ```
 nvim
 ```
 
+Y se pondrá a descargar todos los plugins.
+
+
+
+
+-----------------------------------------------------------------------------------------
+# Después de descargar neovim
 Después de ejecutar neovim es necesario recargar las dependencias de npm debido a que siempre tienen bugs , es cuestión de seguirestos pasos:
 
 Nos dirigimos a la carpeta
