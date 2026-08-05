@@ -1,4 +1,10 @@
+<<<<<<< Updated upstream
 #  Mis Dotfiles
+=======
+# mi Dogfile de mi terminal
+
+<img width="1902" height="1011" alt="image" src="https://github.com/user-attachments/assets/ff23715f-80ed-4a2f-a150-c0200198b8f8" />
+>>>>>>> Stashed changes
 
 Este repositorio reúne la configuración de las herramientas que utilizo diariamente para trabajar en la terminal. El objetivo es disponer de un entorno rápido, organizado y altamente personalizable para desarrollo y administración de sistemas.
 
