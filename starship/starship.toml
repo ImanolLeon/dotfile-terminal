@@ -1,0 +1,42 @@
+format = """
+$shell\
+$directory\
+$git_branch\
+$java\
+$maven\
+$package\
+$php\
+$bun\
+$line_break\ 
+$character"""
+
+[shell]
+fish_indicator = ' 󰈺 '
+style = 'cyan bold'
+disabled = false
+
+[character]
+success_symbol = "[➜ ](bold green)"
+error_symbol = "[➜ ](bold red)"
+
+[bun]
+format = ' [ $version](bold green)'
+
+[directory]
+format = "[📁 $path ](bold #cba6f7)"
+truncation_length = 2         
+truncate_to_repo = true  
+
+
+[git_branch]
+format = " [ $branch](bold #fab387) "   # ← espacio ANTES de "on"
+[java]
+format = "[Java:☕  ](bold #ea999c)"
+[maven]
+format = "[Maven:🅼  ](bold green)"
+[package]
+format = '[📦 $version](208 bold) '
+
+[php]
+format = '[Php: ](bold #f4b8e4) '
+
