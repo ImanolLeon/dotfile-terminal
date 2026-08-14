@@ -1,67 +1,161 @@
----------Descarga Starship
+# Personalización de windows powershell 
+## Crear archivo profile 
+El archivo `$PROFILE` en windows es una gran referencia a los `bashrc` `config.fish` en el shells del sistema UNIX(Linux) son archivos que manejan alias ,configuraciones de módulos , etc.
 
-Descargando forzando ubicación :
--> winget install --id Starship.Starship --force --location "C:\Users\imano\starship"
+**IMPORTANTE**
+
+Es muy comun ver el signo de `~` ,se usa para nombrar a la siguiente ruta `C:\Users\TuUsuario\`
+
+### Crear archivo txt de personalización
+
+```powershell
+New-Item -Path $PROFILE -Type File -Force
+```
+
+1. Para ver la ruta :
+
+```powershell
+$PROFILE
+``` 
+Se ubica en documentos con el nombre de `powershell`.
+
+2. Para modificarlo
+
+```powershell
+notepad $PROFILE
+``` 
+**No olvidar guardarlo cuando se modifique**
+
+3. Para recargar sin cerrar la terminal 
+
+```powershell
+. $PROFILE
+```
+
+### Como crear alias:
+
+```powershell
+function NombreDelAlias { comando }
+```
+* **Importante la palabra reservada `function`**
+* **Importante los espacios en las llaves**
+
+Ejemplo: (Estamos creando un alias ejecutar un comando de conexión con hostinger)
+
+```powershell
+function ssh-hostinger { ssh -p 65002 -i 
+"$env:USERPROFILE\.ssh\imanolClave"
+ u268804017@217.15.169.25 }
+```
+
+# Descargando Starshipt
+## forzando ubicación:
+winget install --id Starship.Starship --force --location "C:\Users\imano\starship"
 
 Verificamos que exista :
-
--> dir C:\Users\imano\starship\starship.exe
+```powershell
+dir C:\Users\imano\starship\starship.exe
+```
 
 Agregamos al path 
 
+```powershell
 $env:Path += ";C:\Users\imano\starship"
 starship --version
+```
 
 Edita tu profile , si en caso no lo tenga crealo con : 
 
--> New-Item -Path $PROFILE -Type File -Force
+```powershell
+New-Item -Path $PROFILE -Type File -Force
+```
 
 Ese comando crea tu %PROFILE una vez creado escribes ahi adentro con 
-
--> notepad $PROFILE
+```powershell
+notepad $PROFILE
+```
 
 y agregamos esta linea en el archivo $PROFILE
- 
--> Invoke-Expression (&starship init powershell)
+```powershell 
+Invoke-Expression (&starship init powershell)
+```
 
 Recargamos el perfil con 
-
--> . $PROFILE
+```powershell
+. $PROFILE
+```
 
 Ahora creamos un archivo de personalización de nuestro promp en la misma ruta donde está nuestro starship.exe
 para poder estar ordenado donde está para poder modificarlo fácilmente en el futuro
 
 Ingresamos a la carpeta
-
--> cd C:\Users\imano\starship
+```powershell
+cd C:\Users\imano\starship
+```
 
 Creamos archivo de personalización
-
--> New-Item -Path "starship.toml" -ItemType File -Force | Out-Null
+```powershell
+New-Item -Path "starship.toml" -ItemType File -Force | Out-Null
+```
 
 Y lo abrimos para editarlo
+```powershell
+notepad starship.toml
+```
 
--> notepad starship.toml
+Pegamos ahí nuestros estilos ubicados en la ruta `/dotfile-terminal/starship/starship.toml`.
 
-Pegamos ahí nuestros estilos.
-Luego conectamos nuestros estilos a nuestro starship
 
 Primero verficamos que exista nuestro archivo de personalización 
-
--> Test-Path "C:\Users\imano\starship\starship.toml"
+```powershell
+Test-Path "C:\Users\imano\starship\starship.toml"
+```
 
 Y ahora probamos para ver si funciona 
+```powershell
+$env:STARSHIP_CONFIG = "C:\Users\imano\starship\starship.toml"
 
--> $env:STARSHIP_CONFIG = "C:\Users\imano\starship\starship.toml"
-
--> starship --version
+starship --version
+```
 
 si vemos que si funciona normal , lo aplicamos permanente 
-
--> [Environment]::SetEnvironmentVariable("STARSHIP_CONFIG", "C:\Users\imano\starship\starship.toml", [EnvironmentVariableTarget]::User)
+```powershell
+[Environment]::SetEnvironmentVariable("STARSHIP_CONFIG", "C:\Users\imano\starship\starship.toml", [EnvironmentVariableTarget]::User)
+```
 
 Verficicamos que se guardó 
 
--> [Environment]::GetEnvironmentVariable("STARSHIP_CONFIG", "User") 
+```powershell
+[Environment]::GetEnvironmentVariable("STARSHIP_CONFIG", "User") 
+```
+
+# Descarga eza
+Eza es un `ls` pero con iconos muy personalizados.
+
+Primero descargamos un paquete (Scoop) que ayude a descargar eza
+
+```powershell
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
+
+luego 
+
+```powershell
+irm get.scoop.sh | iex
+```
+
+Luego de eso cerramos la terminal y descargamos eza
+
+```powershell
+scoop install eza
+```
+
+y en nuestro archivo `$PROFILE`  agregamos estas lineas
 
 
+```powershell
+#Para deshabilitar la herramienta que usa por defecto powershell
+Remove-Item Alias:ls -Force -ErrorAction SilentlyContinue
+#Para listar con iconos
+function ls { eza --icons }
+```
