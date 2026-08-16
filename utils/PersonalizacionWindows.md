@@ -152,10 +152,11 @@ scoop install eza
 
 y en nuestro archivo `$PROFILE`  agregamos estas lineas
 
-
 ```powershell
 #Para deshabilitar la herramienta que usa por defecto powershell
 Remove-Item Alias:ls -Force -ErrorAction SilentlyContinue
 #Para listar con iconos
 function ls { eza --icons }
 ```
+## Agregar fastfetch
+
