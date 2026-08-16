@@ -158,5 +158,43 @@ Remove-Item Alias:ls -Force -ErrorAction SilentlyContinue
 #Para listar con iconos
 function ls { eza --icons }
 ```
-## Agregar fastfetch
+
+# Agregar fastfetch
+Descargamos fastfetch
+```powershell
+winget install fastfetch
+```
+y escribimos esto en nuestro archivo `$PROFILE`
+```powershell
+#Configuración fasfetch
+# Minimal profile: UTF‑8 + Oh My Posh (if installed) + Fastfetch with explicit config path
+try {
+    [Console]::InputEncoding  = [System.Text.Encoding]::UTF8
+    [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+    $OutputEncoding = [System.Text.UTF8Encoding]::new($false)
+    chcp 65001 > $null
+} catch {}
+
+Clear-Host
+
+# Force Fastfetch to use YOUR config every time (bypass path confusion)
+if (Get-Command fastfetch -ErrorAction SilentlyContinue) {
+   fastfetch -c "C:/Users/imano/.config/fastfetch/config.jsonc"
+}
+```
+Lo que hace esto es activar fastfetch cada vez que se abre una terminal en powershell.
+
+Fijate muy bien en la ruta que tienes en el archivo `config.json`
+```powershell
+"source": "/home/imanol/.config/fastfetch/ascii.txt",
+```
+Recordar que cambia en windows y ubuntu.
+
+**RECORDAR**
+
+Que debes crear un archivo `.config` en la raíz del usuario para que ahí estén los archivos.
+
+
+
+
 
