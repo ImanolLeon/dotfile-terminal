@@ -192,9 +192,29 @@ Recordar que cambia en windows y ubuntu.
 
 **RECORDAR**
 
-Que debes crear un archivo `.config` en la raíz del usuario para que ahí estén los archivos.
+Que debes crear un archivo `.config/fastfecht/asci.txt` y `.config/fastfecht/config.json` en la raíz del usuario para que ahí estén los archivos y los actualizas como está en la carpeta de este repositorio.
 
 
+# Configuración de visual studio code
+```
+{
+    "editor.fontFamily": "CaskaydiaCove Nerd Font Mono",
+    "editor.fontSize": 13.5,
+    "workbench.secondarySideBar.defaultVisibility": "hidden",
+    "workbench.colorTheme": "One Monokai",
+
+    "files.autoSave": "afterDelay",
+    "editor.guides.bracketPairs": true,
+    "workbench.editor.empty.hint": "hidden",
+    "chat.disableAIFeatures": true,
+    "workbench.editor.enablePreview": false,
+    "workbench.iconTheme": "file-icons",
+    "terminal.integrated.shellIntegration.enabled": false
+}
+
+```
+
+Esto sirve para `Starshipt` para que se vea bien en la terminal del editor de código.
 
 
 
