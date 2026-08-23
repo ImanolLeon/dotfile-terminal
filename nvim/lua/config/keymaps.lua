@@ -20,7 +20,22 @@ vim.keymap.set("n", "<Tab>", ":BufferLineCycleNext<CR>")
 vim.keymap.set("n", "<S-f>", function()
 	builtin.find_files({
 		cwd = vim.fn.expand("~"), -- carpeta del archivo actual
-		find_command = { "fd", "--type", "f", "--hidden", "--exclude", ".git" },
+		find_command = {
+			"fd",
+			"--type",
+			"f",
+			"--hidden",
+			"--exclude",
+			".git",
+			"--exclude",
+			".cache",
+			"--exclude",
+			".local",
+			"--exclude",
+			".cargo",
+			"--exclude",
+			".rustup",
+		},
 	})
 end, { desc = "Buscar archivos desde el home " })
 
