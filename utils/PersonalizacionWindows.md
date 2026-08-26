@@ -217,4 +217,33 @@ Que debes crear un archivo `.config/fastfecht/asci.txt` y `.config/fastfecht/con
 Esto sirve para `Starshipt` para que se vea bien en la terminal del editor de código.
 
 
+# Tema usado en la terminal.
 
+```
+"schemes": 
+    [
+        {
+            "background": "#292C3C",
+            "black": "#45475A",
+            "blue": "#89B4FA",
+            "brightBlack": "#585B70",
+            "brightBlue": "#89B4FA",
+            "brightCyan": "#94E2D5",
+            "brightGreen": "#A6E3A1",
+            "brightPurple": "#CBA6F7",
+            "brightRed": "#F38BA8",
+            "brightWhite": "#A6ADC8",
+            "brightYellow": "#F9E2AF",
+            "cursorColor": "#F5E0DC",
+            "cyan": "#94E2D5",
+            "foreground": "#CDD6F4",
+            "green": "#A6E3A1",
+            "name": "MiTema",
+            "purple": "#CBA6F7",
+            "red": "#E78284",
+            "selectionBackground": "#585B70",
+            "white": "#BAC2DE",
+            "yellow": "#F9E2AF"
+        }
+    ],
+```
