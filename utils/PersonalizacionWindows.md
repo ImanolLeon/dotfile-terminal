@@ -203,6 +203,9 @@ Que debes crear un archivo `.config/fastfecht/asci.txt` y `.config/fastfecht/con
     "workbench.secondarySideBar.defaultVisibility": "hidden",
     "workbench.colorTheme": "One Monokai",
 
+    "terminal.integrated.fontFamily": "FiraCode Nerd Font Mono",
+    "terminal.integrated.fontSize": 14
+
     "files.autoSave": "afterDelay",
     "editor.guides.bracketPairs": true,
     "workbench.editor.empty.hint": "hidden",
